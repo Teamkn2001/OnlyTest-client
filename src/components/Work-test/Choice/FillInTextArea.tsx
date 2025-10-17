@@ -1,5 +1,4 @@
 import { Textarea } from "@/components/ui/textarea";
-import React from "react";
 
 export default function FillInTextArea() {
   return (

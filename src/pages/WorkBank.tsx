@@ -1,6 +1,5 @@
 import FillInBlank from "@/components/Work-test/Choice/FillInBlank";
 import FillInTextArea from "@/components/Work-test/Choice/FillInTextArea";
-import MultipleImageChoices from "@/components/Work-test/Choice/MultipleImageChoices";
 import MultipleTextChoicesDropdown from "@/components/Work-test/Choice/MultipleTextChoicesDropdown";
 import MultipleTextChoices from "@/components/Work-test/Choice/MultipleTextChoices";
 import SpeakingAnswer from "@/components/Work-test/Choice/SpeakingAnswer";
@@ -17,13 +16,6 @@ export const ExampleUsage = () => {
     { id: "d", text: "Option D" },
   ];
 
-  const imageChoices = [
-    { id: 1, image: "https://picsum.photos/200", text: "Cake" },
-    { id: 2, image: "https://picsum.photos/200", text: "Cookies" },
-    { id: 3, image: "https://picsum.photos/200", text: "Ice Cream" },
-    { id: 4, image: "https://picsum.photos/200", text: "Waffle" },
-  ];
-
   // Multiple choices TextSingle selection (like your image)
   const textOptions = [
     {
@@ -37,19 +29,7 @@ export const ExampleUsage = () => {
     { id: 6, text: "My friend told me to become a professional athlete" },
   ];
 
-  const CapitalCity = [
-    { id: 1, text: "Paris" },
-    { id: 2, text: "London" },
-    { id: 3, text: "Berlin" },
-    { id: 4, text: "Madrid" },
-  ];
 
-  const textChoices1 = [
-    { id: "a", text: "A. Fresher cilantro." },
-    { id: "b", text: "B. A different type of herb." },
-    { id: "c", text: "C. Cilantro that is cheaper." },
-    { id: "d", text: "D. Help from a store employee." },
-  ];
 
   return (
     <div className="space-y-6 p-8 bg-[#D9D9D9]">
@@ -58,7 +38,7 @@ export const ExampleUsage = () => {
         audio="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
         // image="https://picsum.photos/id/237/200/300"
         title="Sample Question "
-        // instruction={"Instructions: Listen to the audio clip and answer the question."}
+        instruction={"Instructions: Read the passage and fill the blank words."}
         passage="My name is Carlos, and I have just moved to this city last month for a new job. Everything (1) ______ still quite new to me. On weekdays, my routine (2) ______ quite early. I usually wake up around 6:30 AM. First, I always make some coffee, and then I (3) ______ the local news on my tablet. I believe it’s a good way to learn about what’s happening in my new surroundings.
 I work as a software developer, and my office is downtown. I (4) ______ take the bus to work because I don’t have a car yet. The bus ride is usually about 40 minutes. In the evenings, I sometimes (5) ______ different neighborhoods to get to know the city better. I hope to make some new friends soon"
       />
@@ -80,7 +60,6 @@ I work as a software developer, and my office is downtown. I (4) ______ take the
 
         <MultipleTextChoices
           choices={textChoices}
-          allowMultiple={false}
           onSelectionChange={(selected) => console.log("Selected:", selected)}
         />
       </div>
@@ -177,23 +156,9 @@ I work as a software developer, and my office is downtown. I (4) ______ take the
         <Question />
       </div>
 
-      {/* Choices Component test */}
-      <MultipleImageChoices
-        choices={textChoices}
-        // title="Choose the correct answer"
-        allowMultiple={false}
-        columns={2}
-      />
-      <MultipleImageChoices
-        choices={imageChoices}
-        // title="Choose the correct answer"
-        allowMultiple={false}
-        columns={2}
-      />
-
       {/* Speaking Answer */}
       <SpeakingAnswer
-        onRecordingComplete={(blob, url) => {
+        onRecordingComplete={(blob) => {
           console.log("Recording completed:", blob);
           // Save the recording or process it
         }}

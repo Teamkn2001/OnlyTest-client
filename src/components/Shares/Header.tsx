@@ -21,6 +21,24 @@ export default function Header() {
           <li>
             <button onClick={() => navigate('/form')}>Form Pratice</button>
           </li>
+          <li>
+            <button onClick={() => navigate('/hooker')}>Hook</button>
+          </li>
+          <li>
+            <button onClick={() => navigate('/excelTable')}>Excel Table</button>
+          </li>
+          <li>
+            <button onClick={() => navigate('/dashboard')}>Dashboard</button>
+          </li>
+          <li>
+            <button onClick={() => navigate('/DnDBasic')}>DnD Basic</button>
+          </li>
+          <li>
+            <button onClick={() => navigate('/zustand')}>Zustand</button>
+          </li>
+          <li>
+            <button onClick={() => navigate('/jotai')}>Jotai</button>
+          </li>
         </ul>
       </nav>
     </div>

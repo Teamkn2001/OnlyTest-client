@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Check } from 'lucide-react';
 import Question from "./Question";
 import { Textarea } from "../ui/textarea";
@@ -88,7 +88,7 @@ export default function DualQuestion({
           <Question question={questions[0].question} />
           
           {/* Answer Field - only enabled when selected */}
-          <div className="my-4">
+          <div >
             <Textarea 
               placeholder="Type your answer here..."
               disabled={selectedQuestion !== 0}
@@ -139,7 +139,7 @@ export default function DualQuestion({
           />
           
           {/* Answer Field - only enabled when selected */}
-          <div className="my-4">
+          <div >
             <Textarea 
               placeholder="Type your answer here..."
               disabled={selectedQuestion !== 1}

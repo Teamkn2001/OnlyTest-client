@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function PlayGrid() {
   const [columns, setColumns] = useState(5);
@@ -16,19 +16,20 @@ export default function PlayGrid() {
   return (
     <div>
       /* With Grid (what we used) */
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 ">
         <div className="bg-amber-300">Field 1</div> {/* Auto-positioned */}
         <div className="bg-green-300">Field 2</div> {/* Auto-positioned */}
         <div className="bg-blue-300">Field 3</div> {/* Auto-positioned */}
         <div className="bg-red-300">Field 4</div> {/* Auto-positioned */}
-        <div className="col-span-2 bg-orange-500">Buttons</div>{" "}
+        <div className="col-span-2 bg-orange-500">col-span- adjust</div>{" "}
         {/* Spans both columns */}
       </div>
+      
       <div
         className="relative w-full m-auto"
         style={{ aspectRatio: "1/1", maxWidth: "600px" }}
       >
-        <div className="grid absolute inset-0 grid-cols-10 grid-rows-7 text-center mt-4 bg-green-200">
+        <div className="grid absolute inset-0 grid-cols-10 //grid-rows-7 text-center mt-4 bg-green-200">
           {mockDiv.map((item, index) => (
             <div>
               <div

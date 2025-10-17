@@ -48,30 +48,30 @@ const MachineForm: React.FC<MachineFormProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Form validation using Zod validator
-  const validateForm = () => {
-    const result = MachineValidator.validateByMode(mode, formData);
+  // const validateForm = () => {
+  //   const result = MachineValidator.validateByMode(mode, formData);
     
-    if (!result.success) {
-      const newErrors: Record<string, string> = {};
-      result.error.errors.forEach((err) => {
-        if (err.path[0]) {
-          newErrors[err.path[0] as string] = err.message;
-        }
-      });
-      setErrors(newErrors);
-      return false;
-    }
+  //   if (!result.success) {
+  //     const newErrors: Record<string, string> = {};
+  //     result.error.errors.forEach((err) => {
+  //       if (err.path[0]) {
+  //         newErrors[err.path[0] as string] = err.message;
+  //       }
+  //     });
+  //     setErrors(newErrors);
+  //     return false;
+  //   }
     
-    setErrors({});
-    return true;
-  };
+  //   setErrors({});
+  //   return true;
+  // };
 
   // Validate individual field and show errors immediately
-  const validateAndShowFieldError = (field: string, value: unknown) => {
-    const error = MachineValidator.validateField(field, value, mode);
-    setErrors(prev => ({ ...prev, [field]: error }));
-    return error === '';
-  };
+  // const validateAndShowFieldError = (field: string, value: unknown) => {
+  //   const error = MachineValidator.validateField(field, value, mode);
+  //   setErrors(prev => ({ ...prev, [field]: error }));
+  //   return error === '';
+  // };
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -133,7 +133,7 @@ const MachineForm: React.FC<MachineFormProps> = ({
     setFormData(prev => ({ ...prev, [field]: value }));
     
     // Real-time field validation
-    const error = MachineValidator.validateField(field, value, mode);
+    const error = MachineValidator.validateField(field, value);
     setErrors(prev => ({ ...prev, [field]: error }));
   };
 

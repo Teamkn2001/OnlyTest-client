@@ -69,7 +69,7 @@ export class MachineValidator {
     return this.schemas.update.safeParse(data);
   }
 
-  static validateField(field: string, value: unknown, mode: 'create' | 'update' = 'create') {
+  static validateField(field: string, value: unknown) {
     try {
        // Get the base schema shape for field validation
       const baseShape = BaseMachineSchema.shape;

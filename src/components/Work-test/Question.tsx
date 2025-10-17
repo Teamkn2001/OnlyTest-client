@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -23,6 +23,7 @@ export default function Question({
   // Check if any content is provided
   const hasContent = question || image || audio || guideline;
 
+  // Audio control functions
   const togglePlay = (): void => {
     if (audioRef.current) {
       if (isPlaying) {
