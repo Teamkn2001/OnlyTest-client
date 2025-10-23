@@ -1,3 +1,6 @@
+import GameLayout from "@/features/components/layouts/GameLayout";
+import CardGame2 from "@/features/components/OneCardAvailablePlay";
+import Exam from "@/features/Exams/components/Exam";
 import BasicLayout from "@/Layout/BasicLayout";
 import CardGame from "@/pages/CircleTemplate";
 import Dashboard from "@/pages/Dashboard";
@@ -6,6 +9,7 @@ import ExcelTable from "@/pages/ExcelTable";
 import FormBestPratice from "@/pages/FormBestPratice";
 import Hooker from "@/pages/Hooker";
 import JotaiPage from "@/pages/Jotai";
+import MentimeterEmbed from "@/pages/MentimeterSample";
 import PDF from "@/pages/PDF";
 import PlayGrid from "@/pages/PlayGrid";
 import UsageExample from "@/pages/Sample";
@@ -82,9 +86,41 @@ const router = createBrowserRouter([
         path: '/card',
         element: <CardGame />,
       }
-
     ],
   },
+
+  {
+    path: "/game",
+    element: <GameLayout />,
+    children: [
+      {
+        index: true,
+        element: <CardGame />,
+      },
+      {
+        path: "oneCardGame",
+        element: <CardGame2 />,
+      }
+    ]
+  },
+
+  {
+    path: "/exam",
+    element: <GameLayout />,
+    children: [
+      {
+        index: true,
+        element: <Exam />,
+      }
+    ]
+  },
+
+  {
+    path: "mentimeter",
+    element: <MentimeterEmbed votingCode="al22oq999z9w" />,
+  }
+
+
 ]);
 
 export default function AppRouter() {
