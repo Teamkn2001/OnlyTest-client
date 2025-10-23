@@ -18,5 +18,5 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # RUN chmod +x docker-entrypoint.sh
 # ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 80
+EXPOSE 5678
 CMD ["nginx", "-g", "daemon off;"]

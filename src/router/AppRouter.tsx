@@ -1,4 +1,5 @@
 import BasicLayout from "@/Layout/BasicLayout";
+import CardGame from "@/pages/CircleTemplate";
 import Dashboard from "@/pages/Dashboard";
 import DnDBasic from "@/pages/DnDBasic";
 import ExcelTable from "@/pages/ExcelTable";
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: '/zustand',
         element: <ZustandStorage />,
+      },
+      {
+        path: '/card',
+        element: <CardGame />,
       }
 
     ],
