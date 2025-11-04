@@ -1,15 +1,15 @@
-import GameLayout from "@/features/components/layouts/GameLayout";
-import CardGame2 from "@/features/components/OneCardAvailablePlay";
+import GameLayout from "@/features/game/Layouts/GameLayout";
+import CardGame2 from "@/features/game/Components/OneCardAvailablePlay";
 import Exam from "@/features/Exams/components/Exam";
 import BasicLayout from "@/Layout/BasicLayout";
-import CardGame from "@/pages/CircleTemplate";
+import CardGame from "@/features/game/Components/CircleTemplate";
 import Dashboard from "@/pages/Dashboard";
 import DnDBasic from "@/pages/DnDBasic";
 import ExcelTable from "@/pages/ExcelTable";
 import FormBestPratice from "@/pages/FormBestPratice";
 import Hooker from "@/pages/Hooker";
 import JotaiPage from "@/pages/Jotai";
-import MentimeterEmbed from "@/pages/MentimeterSample";
+import MentimeterEmbed from "@/pages/mentimeter/MentimeterSample";
 import PDF from "@/pages/PDF";
 import PlayGrid from "@/pages/PlayGrid";
 import UsageExample from "@/pages/Sample";
@@ -20,6 +20,9 @@ import { ExampleUsage } from "@/pages/WorkBank";
 import ZustandStorage from "@/pages/ZustandStorage";
 // import Practice, { ExampleUsage } from "@/pages/WorkBank";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RankingStat from "@/features/game/Components/RankingState";
+import { exampleCharacters } from "@/features/game/mock";
+import BaseLayout from "@/Layout/BaseLayout";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "oneCardGame",
         element: <CardGame2 />,
+      },
+      {
+        path: "rankingStat",
+        element: <RankingStat initialCharacters={exampleCharacters} statTypes={['attack' , 'speed']}/>,
       }
     ]
   },
@@ -117,7 +124,18 @@ const router = createBrowserRouter([
 
   {
     path: "mentimeter",
-    element: <MentimeterEmbed votingCode="al22oq999z9w" />,
+    element: <MentimeterEmbed votingCode="alnuj8top2k2" />,
+  },
+
+  {
+    path: "/head",
+    element: <BaseLayout />,
+    children: [
+      {
+        index: true,
+        element: <div>Head Layout Page</div>,
+      }
+    ]
   }
 
 

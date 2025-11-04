@@ -12,6 +12,9 @@ export default function GameHeader() {
           <li>
             <button onClick={() => navigate('/game/oneCardGame')}>singlecard</button>
           </li>        
+          <li>
+            <button onClick={() => navigate('/game/rankingStat')}>Ranking Stat</button>
+          </li>        
         </ul>
       </nav>
     </div>
