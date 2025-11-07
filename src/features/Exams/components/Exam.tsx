@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import NewsCard from "@/components/shares/NewsCard";
 
 const questions = [
   {
@@ -52,6 +53,13 @@ export default function Exam() {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-slate-100 py-10 px-4">
+
+      <NewsCard
+  image_url="https://assets-prd.ignimgs.com/2024/02/13/live-action-miles-morales-movie-update-1707829705636.jpg"
+  title="Mandelson was not interviewed for US ambassador job"
+  published_date="วันที่ 7 พฤศจิกายน 2568"
+  category="ข่าวหลัก"
+/>
       <Card className="w-full max-w-2xl shadow-lg border border-slate-200">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center text-slate-700">

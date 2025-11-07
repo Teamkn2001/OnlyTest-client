@@ -133,7 +133,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Head Layout Page</div>,
+        element: <Exam />,
       }
     ]
   }

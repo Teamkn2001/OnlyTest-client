@@ -1,13 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search } from 'lucide-react';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -17,15 +9,63 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  isScrolled?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ isScrolled = false }) => {
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+
+  const menuItems = {
+    about: [
+      'Message from the President',
+      'Operations and future plans',
+      'History',
+      'Facts and Figures',
+      'Awards and honors',
+      'University profile',
+      'Living in Kyoto',
+      'Public relations',
+      'Employment',
+      'Human rights',
+      'Gender equality',
+      'Health, safety, and environment',
+      'Kyoto University from a Global Perspective',
+    ],
+    research: [
+      'Research news and departments',
+      'Policies',
+      'Collaboration',
+      'Research support and scholarships',
+      'Careers',
+      'Visa/Housing/Daily Life',
+      'About',
+      'Research compliance & ethics',
+    ],
+    study: [
+      'Admissions',
+      'Academic Programs',
+      'Student Life',
+      'Campus Facilities',
+      'Tuition and Fees',
+      'Scholarships',
+    ],
+    global: [
+      'International Programs',
+      'Global Partnerships',
+      'Student Exchange',
+      'Study Abroad',
+      'International Students',
+      'Global Initiatives',
+    ],
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full shadow-md">
-        
       <div className="flex bg-red-800">
         {/* White Banner - Spans both sections vertically */}
-        <div className="bg-white w-24 flex items-center justify-center ml-4">
-          {/* Replace this div with your white banner image */}
-          <div className="text-[#003366] text-center text-xs font-light leading-tight">
+        <div className={`bg-white flex items-center justify-center ml-4 transition-all duration-300 ${isScrolled ? 'w-16' : 'w-24'}`}>
+          <div className={`text-[#003366] text-center font-light leading-tight transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
             京都
             <br />
             大学
@@ -35,24 +75,23 @@ const Header: React.FC = () => {
         {/* Right Side - Contains both Top and Bottom sections */}
         <div className="flex-1">
           {/* Top Section - Navy Blue Background */}
-          <div className="bg-[#003366]">
+          <div className="bg-[#003366] transition-all duration-300">
             <div className="container mx-auto px-4">
-              <div className="flex items-center justify-between py-3">
+              <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1.5' : 'py-3'}`}>
                 {/* Left Side - Logo and University Name */}
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                    {/* University Logo/Seal - Replace with actual logo */}
-                    <div className="w-10 h-10 bg-[#003366] rounded-full"></div>
+                  <div className={`bg-white rounded-full flex items-center justify-center transition-all duration-300 ${isScrolled ? 'w-9 h-9' : 'w-12 h-12'}`}>
+                    <div className={`bg-[#003366] rounded-full transition-all duration-300 ${isScrolled ? 'w-7 h-7' : 'w-10 h-10'}`}></div>
                   </div>
-                  <span className="text-white text-2xl font-semibold tracking-wide">
+                  <span className={`text-white font-semibold tracking-wide transition-all duration-300 ${isScrolled ? 'text-lg' : 'text-2xl'}`}>
                     KYOTO UNIVERSITY
                   </span>
                 </div>
 
                 {/* Right Side - Two Rows of Links */}
-                <div className="flex flex-col items-end gap-2">
+                <div className={`flex flex-col items-end transition-all duration-300 ${isScrolled ? 'gap-1' : 'gap-2'}`}>
                   {/* First Row: Events, Directions, Contact, Search, Language */}
-                  <div className="flex items-center gap-6 text-white text-sm">
+                  <div className={`flex items-center text-white transition-all duration-300 ${isScrolled ? 'gap-3 text-xs' : 'gap-6 text-sm'}`}>
                     <a href="/events" className="hover:text-gray-200 transition-colors">
                       Events
                     </a>
@@ -62,16 +101,16 @@ const Header: React.FC = () => {
                     <a href="/contact" className="hover:text-gray-200 transition-colors">
                       Contact
                     </a>
-                    <div className="w-px h-6 bg-white/30"></div>
+                    <div className={`bg-white/30 transition-all duration-300 ${isScrolled ? 'w-px h-4' : 'w-px h-6'}`}></div>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-white hover:bg-white/10"
+                      className={`text-white hover:bg-white/10 transition-all duration-300 ${isScrolled ? 'h-6 w-6' : 'h-8 w-8'}`}
                     >
-                      <Search className="h-4 w-4" />
+                      <Search className={`transition-all duration-300 ${isScrolled ? 'h-3 w-3' : 'h-4 w-4'}`} />
                     </Button>
                     <Select defaultValue="en">
-                      <SelectTrigger className="w-32 h-8 bg-transparent border-white/20 text-white hover:bg-white/10">
+                      <SelectTrigger className={`bg-transparent border-white/20 text-white hover:bg-white/10 transition-all duration-300 ${isScrolled ? 'w-24 h-6 text-xs' : 'w-32 h-8'}`}>
                         <SelectValue placeholder="Language" />
                       </SelectTrigger>
                       <SelectContent>
@@ -83,7 +122,7 @@ const Header: React.FC = () => {
                   </div>
 
                   {/* Second Row: Current Students & Staff, Alumni, Make a gift */}
-                  <div className="flex items-center gap-4 text-white text-sm">
+                  <div className={`flex items-center text-white transition-all duration-300 ${isScrolled ? 'gap-2 text-xs' : 'gap-4 text-sm'}`}>
                     <a
                       href="/current-students"
                       className="hover:text-gray-200 transition-colors"
@@ -95,7 +134,7 @@ const Header: React.FC = () => {
                     </a>
                     <Button
                       variant="outline"
-                      className="bg-white text-[#003366] hover:bg-gray-100 border-0 h-8"
+                      className={`bg-white text-[#003366] hover:bg-gray-100 border-0 transition-all duration-300 ${isScrolled ? 'h-6 text-xs px-3' : 'h-8'}`}
                       size="sm"
                     >
                       Make a gift
@@ -107,122 +146,140 @@ const Header: React.FC = () => {
           </div>
 
           {/* Bottom Section - Darker Navy with Navigation */}
-          <div className="bg-[#002855] border-t border-white/10">
+          <div className="bg-[#002855] border-t border-white/10 relative transition-all duration-300">
             <div className="container mx-auto px-4">
-              <div className="flex items-center h-14">
-                {/* Navigation Menu */}
-                <NavigationMenu>
-                  <NavigationMenuList className="gap-8">
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 data-[state=open]:bg-white/10">
-                        About
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4">
-                          <li>
-                            <NavigationMenuLink asChild>
+              <div className={`flex items-center gap-8 transition-all duration-300 ${isScrolled ? 'h-10' : 'h-14'}`}>
+                {/* About Menu */}
+                <div
+                  className="relative h-full flex items-center"
+                  onMouseEnter={() => setActiveMenu('about')}
+                  onMouseLeave={() => setActiveMenu(null)}
+                >
+                  <button className={`text-white hover:bg-white/10 rounded transition-all duration-300 h-full ${isScrolled ? 'px-3 py-1 text-sm' : 'px-4 py-2'}`}>
+                    About
+                  </button>
+                  {activeMenu === 'about' && (
+                    <>
+                      {/* Invisible bridge to connect button to dropdown */}
+                      <div className="absolute left-0 right-0 top-full h-4 bg-transparent"></div>
+                      <div className={`fixed left-0 right-0 bg-[#2d2d2d] border-t border-white/10 shadow-lg z-50 transition-all duration-300 ${isScrolled ? 'top-[112px]' : 'top-[154px]'}`}>
+                        <div className="container mx-auto px-4 py-8">
+                          <div className="grid grid-cols-3 gap-x-12 gap-y-3">
+                            {menuItems.about.map((item, index) => (
                               <a
-                                href="/about/overview"
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                key={index}
+                                href={`/about/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 py-1"
                               >
-                                <div className="text-sm font-medium leading-none">Overview</div>
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                  Learn about Kyoto University
-                                </p>
+                                <span className="text-gray-400">›</span>
+                                <span>{item}</span>
                               </a>
-                            </NavigationMenuLink>
-                          </li>
-                          <li>
-                            <NavigationMenuLink asChild>
-                              <a
-                                href="/about/history"
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                <div className="text-sm font-medium leading-none">History</div>
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                  Our rich heritage and traditions
-                                </p>
-                              </a>
-                            </NavigationMenuLink>
-                          </li>
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
 
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 data-[state=open]:bg-white/10">
-                        Research & Collaborate
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4">
-                          <li>
-                            <NavigationMenuLink asChild>
+                {/* Research & Collaborate Menu */}
+                <div
+                  className="relative h-full flex items-center"
+                  onMouseEnter={() => setActiveMenu('research')}
+                  onMouseLeave={() => setActiveMenu(null)}
+                >
+                  <button className={`text-white hover:bg-white/10 rounded transition-all duration-300 h-full ${isScrolled ? 'px-3 py-1 text-sm' : 'px-4 py-2'}`}>
+                    Research & Collaborate
+                  </button>
+                  {activeMenu === 'research' && (
+                    <>
+                      {/* Invisible bridge to connect button to dropdown */}
+                      <div className="absolute left-0 right-0 top-full h-4 bg-transparent"></div>
+                      <div className={`fixed left-0 right-0 bg-[#2d2d2d] border-t border-white/10 shadow-lg z-50 transition-all duration-300 ${isScrolled ? 'top-[112px]' : 'top-[154px]'}`}>
+                        <div className="container mx-auto px-4 py-8">
+                          <div className="grid grid-cols-3 gap-x-12 gap-y-3">
+                            {menuItems.research.map((item, index) => (
                               <a
-                                href="/research"
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                key={index}
+                                href={`/research/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 py-1"
                               >
-                                <div className="text-sm font-medium leading-none">
-                                  Research Areas
-                                </div>
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                  Explore our research domains
-                                </p>
+                                <span className="text-gray-400">›</span>
+                                <span>{item}</span>
                               </a>
-                            </NavigationMenuLink>
-                          </li>
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
 
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 data-[state=open]:bg-white/10">
-                        Study at KyotoU
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4">
-                          <li>
-                            <NavigationMenuLink asChild>
+                {/* Study at KyotoU Menu */}
+                <div
+                  className="relative h-full flex items-center"
+                  onMouseEnter={() => setActiveMenu('study')}
+                  onMouseLeave={() => setActiveMenu(null)}
+                >
+                  <button className={`text-white hover:bg-white/10 rounded transition-all duration-300 h-full ${isScrolled ? 'px-3 py-1 text-sm' : 'px-4 py-2'}`}>
+                    Study at KyotoU
+                  </button>
+                  {activeMenu === 'study' && (
+                    <>
+                      {/* Invisible bridge to connect button to dropdown */}
+                      <div className="absolute left-0 right-0 top-full h-4 bg-transparent"></div>
+                      <div className={`fixed left-0 right-0 bg-[#2d2d2d] border-t border-white/10 shadow-lg z-50 transition-all duration-300 ${isScrolled ? 'top-[112px]' : 'top-[154px]'}`}>
+                        <div className="container mx-auto px-4 py-8">
+                          <div className="grid grid-cols-3 gap-x-12 gap-y-3">
+                            {menuItems.study.map((item, index) => (
                               <a
-                                href="/admissions"
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                key={index}
+                                href={`/study/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 py-1"
                               >
-                                <div className="text-sm font-medium leading-none">Admissions</div>
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                  Join our academic community
-                                </p>
+                                <span className="text-gray-400">›</span>
+                                <span>{item}</span>
                               </a>
-                            </NavigationMenuLink>
-                          </li>
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
 
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 data-[state=open]:bg-white/10">
-                        Global KyotoU
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4">
-                          <li>
-                            <NavigationMenuLink asChild>
+                {/* Global KyotoU Menu */}
+                <div
+                  className="relative h-full flex items-center"
+                  onMouseEnter={() => setActiveMenu('global')}
+                  onMouseLeave={() => setActiveMenu(null)}
+                >
+                  <button className={`text-white hover:bg-white/10 rounded transition-all duration-300 h-full ${isScrolled ? 'px-3 py-1 text-sm' : 'px-4 py-2'}`}>
+                    Global KyotoU
+                  </button>
+                  {activeMenu === 'global' && (
+                    <>
+                      {/* Invisible bridge to connect button to dropdown */}
+                      <div className="absolute left-0 right-0 top-full h-4 bg-transparent"></div>
+                      <div className={`fixed left-0 right-0 bg-[#2d2d2d] border-t border-white/10 shadow-lg z-50 transition-all duration-300 ${isScrolled ? 'top-[112px]' : 'top-[154px]'}`}>
+                        <div className="container mx-auto px-4 py-8">
+                          <div className="grid grid-cols-3 gap-x-12 gap-y-3">
+                            {menuItems.global.map((item, index) => (
                               <a
-                                href="/international"
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                key={index}
+                                href={`/global/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 py-1"
                               >
-                                <div className="text-sm font-medium leading-none">
-                                  International Programs
-                                </div>
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                  Global partnerships and opportunities
-                                </p>
+                                <span className="text-gray-400">›</span>
+                                <span>{item}</span>
                               </a>
-                            </NavigationMenuLink>
-                          </li>
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -230,9 +287,9 @@ const Header: React.FC = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="bg-[#001a33] border-t border-white/10">
+      <div className={`bg-[#001a33] border-t border-white/10 transition-all duration-300 ${isScrolled ? 'h-8' : 'h-10'}`}>
         <div className="container mx-auto px-4">
-          <div className="flex items-center gap-2 h-10 text-sm text-gray-300">
+          <div className={`flex items-center gap-2 h-full text-gray-300 transition-all duration-300 ${isScrolled ? 'text-xs' : 'text-sm'}`}>
             <a href="/" className="hover:text-white transition-colors">
               Home
             </a>

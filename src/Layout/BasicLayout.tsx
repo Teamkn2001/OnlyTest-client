@@ -1,4 +1,4 @@
-import Header from "@/components/Shares/Header";
+import Header from "@/components/shares/Header";
 import { Outlet } from "react-router-dom";
 
 export default function BasicLayout() {
